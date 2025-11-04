@@ -4,57 +4,60 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Family ❤️</title>
+    <title>Our Lovely Family ❤️</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #ed7ec2, #eef663);
-            color: white;
+            background: linear-gradient(120deg, #ff9eb5, #ffe07d);
+            color: rgb(238, 232, 6);
             font-family: "Poppins", sans-serif;
             overflow: hidden;
             text-align: center;
         }
 
-        #heartStage {
-            font-size: 5rem;
-            margin-top: 20%;
-            animation: beat 1s infinite;
+        /* HEART DRAW */
+        svg {
+            width: 200px;
+            height: 200px;
+            stroke: #e91e63;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 1010;
+            stroke-dashoffset: 1010;
+            animation: drawHeart 3s ease forwards;
+            margin-top: 10%;
         }
 
-        @keyframes beat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
+        @keyframes drawHeart {
+            to {
+                stroke-dashoffset: 0;
             }
         }
 
         #beginBtn {
             opacity: 0;
             margin-top: 30px;
-            padding: 10px 30px;
+            padding: 12px 40px;
             font-size: 1.2rem;
             border: none;
-            background: crimson;
+            background: linear-gradient(45deg, #ff4081, #ff77a9);
             color: white;
-            border-radius: 10px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: 0.5s;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.5s ease;
         }
 
         #beginBtn.show {
             opacity: 1;
+            transform: scale(1);
         }
 
         #titleText {
             opacity: 0;
-            font-size: 2rem;
-            margin-top: 100px;
+            font-size: 2.3rem;
+            margin-top: 50px;
             white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid white;
@@ -88,12 +91,14 @@
             box-shadow: 0 0 20px white;
             margin-bottom: 20px;
             transition: 0.5s;
+            opacity: 0;
         }
 
         #photoText {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 15px;
-            animation: fadeZoom 1s ease;
+            color: #fdfdfd;
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
         }
 
         @keyframes fadeZoom {
@@ -125,10 +130,11 @@
 
         #finalMsg {
             opacity: 0;
-            font-size: 2rem;
-            color: pink;
+            font-size: 2.5rem;
+            color: rgb(255, 0, 64);
             margin-top: 50px;
             transition: opacity 1s;
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
         }
 
         .heart {
@@ -153,38 +159,26 @@
 </head>
 
 <body>
-    <div id="heartStage">❤️</div>
-    <button id="beginBtn">Begin</button>
+    <div id="heartStage">
+        <svg viewBox="0 0 32 29.6">
+            <path d="M23.6,0c-2.9,0-5.6,1.5-7.6,4C14,1.5,11.3,0,8.4,0C3.8,0,0,3.8,0,8.4
+      c0,9.3,16,21.2,16,21.2S32,17.7,32,8.4C32,3.8,28.2,0,23.6,0z" />
+        </svg>
+    </div>
+
+    <button id="beginBtn">Begin ❤️</button>
     <h1 id="titleText">Our Lovely Family ❤️</h1>
 
     <div id="photoContainer">
         <img id="familyPhoto" src="" alt="Family Photo" />
         <div id="photoText"></div>
-        <button id="nextBtn">Click me➜</button>
+        <button id="nextBtn">Click me ➜</button>
     </div>
 
-    <h2 id="finalMsg">Love You All 💖</h2>
-
+    <h2 id="finalMsg">Happy Family 💖</h2>
     <audio id="bgMusic" src="family_.mp3" preload="auto"></audio>
 
-
     <script>
-        const photos = [
-            { src: "Papa.png", text: "Papa ❤️" },
-            { src: "Mummy.png", text: "Mummy ❤️" },
-            { src: "Puhaa.png", text: "Phuaa ❤️" },
-            { src: "Puphaa_.png", text: "Puphaa ❤️" },
-            { src: "Dadi.png", text: "Dadi ❤️" },
-            { src: "Suntia_didi.png", text: "Sunti Didi ❤️" },
-            { src: "Asha_di.png", text: "Asha Didi ❤️" },
-            { src: "Bk_bhaiya.png", text: "B.K. Bhaiya ❤️" },
-            { src: "Anand_bhaiya.png", text: "Anand Bhaiya ❤️" },
-            { src: "Sandhya_di.png", text: "Sandhya Didi ❤️" },
-            { src: "Riya_.png", text: "Riya ❤️" },
-            { src: "Anshu_.png", text: "Anshu ❤️" },
-            { src: "Amar.png", text: "It's Me 😇" }
-        ];
-
         const beginBtn = document.getElementById("beginBtn");
         const heartStage = document.getElementById("heartStage");
         const titleText = document.getElementById("titleText");
@@ -195,28 +189,57 @@
         const finalMsg = document.getElementById("finalMsg");
         const bgMusic = document.getElementById("bgMusic");
 
-        setTimeout(() => beginBtn.classList.add("show"), 2000);
+        // Show button after heart draw
+        setTimeout(() => beginBtn.classList.add("show"), 3000);
+
+        const photos = [
+            { src: "Papa.png", text: "Papa ❤️" },
+            { src: "Mummy.png", text: "Mummy ❤️" },
+            { src: "Puhaa.png", text: "Phuaa ❤️" },
+            { src: "Puphaa_.png", text: "Puphaa ❤️" },
+            { src: "Dadi.png", text: "Dadi ❤️" },
+            { src: "Suntia_didi.png", text: "Didi ❤️" },
+            { src: "Asha_di.png", text: "Asha Didi ❤️" },
+            { src: "Bk_bhaiya.png", text: "Bk Bhaiya ❤️" },
+            { src: "Anand_bhaiya.png", text: "Anand Bhaiya ❤️" },
+            { src: "Sandhya_di.png", text: "Sandhya Didi ❤️" },
+            { src: "Riya_.png", text: "Dr. Bang ❤️" },
+            { src: "Anshu_.png", text: "Chhotu ❤️" },
+            { src: "Amar.png", text: "Its Me 😇" },
+        ];
+
+        // Preload all images
+        photos.forEach(p => {
+            const img = new Image();
+            img.src = p.src;
+        });
 
         beginBtn.addEventListener("click", () => {
             bgMusic.play();
             heartStage.style.display = "none";
-            titleText.style.opacity = 2;
-            titleText.style.animation = "typing 3s steps(15, end) forwards";
+            beginBtn.style.display = "none";
+            titleText.style.opacity = 1;
+            titleText.style.animation = "typing 3s steps(20, end) forwards";
+
             setTimeout(() => {
                 photoContainer.style.display = "flex";
                 showPhoto();
-            }, 3500);
+            }, 3000);
         });
 
         let index = 0;
-
         function showPhoto() {
-            const cacheBuster = "?v=" + Date.now();
-            const current = photos[index];
-            photoText.textContent = current.text;
-            familyPhoto.src = current.src + cacheBuster;
-            photoText.style.animation = "fadeZoom 1s ease forwards";
-            familyPhoto.style.animation = "fadeZoom 1s ease forwards";
+            photoText.style.opacity = 0;
+            familyPhoto.style.opacity = 0;
+
+            setTimeout(() => {
+                photoText.textContent = photos[index].text;
+                familyPhoto.src = photos[index].src;
+                familyPhoto.onload = () => {
+                    photoText.style.animation = "fadeZoom 1s ease forwards";
+                    familyPhoto.style.animation = "fadeZoom 1s ease forwards";
+                };
+            }, 300);
         }
 
         nextBtn.addEventListener("click", () => {
@@ -236,15 +259,14 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart");
-            heart.textContent = "🌸";
+            heart.textContent = "❤️";
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = 3 + Math.random() * 3 + "s";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 6000);
         }
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 600);
     </script>
-
 </body>
 
 </html>
