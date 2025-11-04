@@ -4,188 +4,187 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Whole Family ❤️</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
-        rel="stylesheet">
+    <title>Family ❤️</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            background: linear-gradient(120deg, #ed7ec2, #eef663);
+            color: white;
             font-family: "Poppins", sans-serif;
-            background: linear-gradient(135deg, #f5a4b0, #ffc0cb);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
-            flex-direction: column;
-            transition: opacity 1.5s ease;
+            text-align: center;
         }
 
-        svg {
-            width: 200px;
-            height: 200px;
-            stroke: rgb(145, 14, 7);
-            stroke-width: 4;
-            fill: none;
-            stroke-dasharray: 1010;
-            stroke-dashoffset: 1010;
-            animation: drawHeart 10s ease forwards;
+        #heartStage {
+            font-size: 5rem;
+            margin-top: 20%;
+            animation: beat 1s infinite;
         }
 
-        @keyframes drawHeart {
-            to {
-                stroke-dashoffset: 2;
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
             }
         }
 
-        .begin-btn {
-            margin-top: 30px;
-            padding: 12px 40px;
-            background: linear-gradient(45deg, #ff1493, #ff69b4);
-            color: rgb(236, 232, 232);
-            font-size: 22px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        #beginBtn {
             opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.6s ease;
+            margin-top: 30px;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            border: none;
+            background: crimson;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.5s;
         }
 
-        .begin-btn.show {
+        #beginBtn.show {
             opacity: 1;
-            transform: scale(1);
         }
 
-        .begin-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .title {
-            font-family: "Dancing Script", cursive;
-            font-size: 3em;
-            color: rgb(225, 210, 42);
-            text-shadow: 0 0 10px rgba(255, 20, 147, 0.8);
+        #titleText {
+            opacity: 0;
+            font-size: 2rem;
+            margin-top: 100px;
             white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid white;
-            width: 0;
-            opacity: 0;
         }
 
         @keyframes typing {
-            from {
+            0% {
                 width: 0;
                 opacity: 1;
             }
 
-            to {
+            100% {
                 width: 100%;
                 opacity: 1;
             }
         }
 
-        .photo-container {
-            margin-top: 30px;
+        #photoContainer {
             display: none;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            margin-top: 50px;
         }
 
-        .photo-text {
-            font-family: "Dancing Script", cursive;
-            font-size: 2em;
-            color: rgb(218, 197, 7);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
-            opacity: 0;
-        }
-
-        .photo {
-            width: 320px;
-            height: 320px;
-            border-radius: 25px;
+        #familyPhoto {
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            transform: scale(0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 20px white;
+            margin-bottom: 20px;
+            transition: 0.5s;
+        }
+
+        #photoText {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            animation: fadeZoom 1s ease;
         }
 
         @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
 
-        .next-btn {
-            margin-top: 20px;
+        #nextBtn {
             padding: 10px 25px;
-            background: linear-gradient(45deg, #ff1493, #ff69b4);
-            color: white;
             border: none;
-            border-radius: 25px;
+            background: #ff007f;
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
             cursor: pointer;
-            font-size: 18px;
-            box-shadow: 0 4px 12px rgba(255, 20, 147, 0.4);
+            transition: 0.3s;
+        }
+
+        #nextBtn:hover {
+            background: #ff3399;
+        }
+
+        #finalMsg {
+            opacity: 0;
+            font-size: 2rem;
+            color: pink;
+            margin-top: 50px;
+            transition: opacity 1s;
         }
 
         .heart {
-            position: absolute;
-            color: rgba(255, 105, 180, 0.7);
-            font-size: 20px;
-            animation: float 6s infinite ease-in;
+            position: fixed;
+            bottom: 0;
+            font-size: 2rem;
+            animation: float 5s linear forwards;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0) scale(1);
+            from {
+                transform: translateY(0) rotate(0);
                 opacity: 1;
             }
 
-            100% {
-                transform: translateY(-800px) scale(0.5);
+            to {
+                transform: translateY(-120vh) rotate(720deg);
                 opacity: 0;
             }
-        }
-
-        .final-msg {
-            font-family: "Dancing Script", cursive;
-            font-size: 3em;
-            color: white;
-            opacity: 0;
-            text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
-            transition: opacity 1.5s ease;
         }
     </style>
 </head>
 
 <body>
-    <audio id="bgMusic" src="family_.mp3"></audio>
+    <div id="heartStage">❤️</div>
+    <button id="beginBtn">Begin</button>
+    <h1 id="titleText">Our Lovely Family ❤️</h1>
 
-
-    <div id="heartStage">
-        <svg viewBox="0 0 32 29.6">
-            <path d="M23.6,0c-2.9,0-5.6,1.5-7.6,4C14,1.5,11.3,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.3,16,21.2,16,21.2S32,17.7,32,8.4
-      C32,3.8,28.2,0,23.6,0z" />
-        </svg>
-        <button class="begin-btn" id="beginBtn">Begin ❤️</button>
+    <div id="photoContainer">
+        <img id="familyPhoto" src="" alt="Family Photo" />
+        <div id="photoText"></div>
+        <button id="nextBtn">Click me➜</button>
     </div>
 
-    <h1 class="title" id="titleText">My Whole Family ❤️</h1>
+    <h2 id="finalMsg">Love You All 💖</h2>
 
-    <div class="photo-container" id="photoContainer">
-        <div class="photo-text" id="photoText">Papa ❤️</div>
-        <img id="familyPhoto" src="Papa.png" alt="Family Photo" class="photo">
-        <button class="next-btn" id="nextBtn">Please Click me🫶🏻</button>
-    </div>
+    <audio id="bgMusic" src="family_.mp3" preload="auto"></audio>
 
-    <div class="final-msg" id="finalMsg">Happy Family ❤️</div>
 
     <script>
+        const photos = [
+            { src: "Papa.png", text: "Papa ❤️" },
+            { src: "Mummy.png", text: "Mummy ❤️" },
+            { src: "Puhaa.png", text: "Phuaa ❤️" },
+            { src: "Puphaa_.png", text: "Puphaa ❤️" },
+            { src: "Dadi.png", text: "Dadi ❤️" },
+            { src: "Suntia_didi.png", text: "Sunti Didi ❤️" },
+            { src: "Asha_di.png", text: "Asha Didi ❤️" },
+            { src: "Bk_bhaiya.png", text: "B.K. Bhaiya ❤️" },
+            { src: "Anand_bhaiya.png", text: "Anand Bhaiya ❤️" },
+            { src: "Sandhya_di.png", text: "Sandhya Didi ❤️" },
+            { src: "Riya_.png", text: "Riya ❤️" },
+            { src: "Anshu_.png", text: "Anshu ❤️" },
+            { src: "Amar.png", text: "It's Me 😇" }
+        ];
+
         const beginBtn = document.getElementById("beginBtn");
         const heartStage = document.getElementById("heartStage");
         const titleText = document.getElementById("titleText");
@@ -196,12 +195,12 @@
         const finalMsg = document.getElementById("finalMsg");
         const bgMusic = document.getElementById("bgMusic");
 
-        setTimeout(() => beginBtn.classList.add("show"), 3000);
+        setTimeout(() => beginBtn.classList.add("show"), 2000);
 
         beginBtn.addEventListener("click", () => {
             bgMusic.play();
             heartStage.style.display = "none";
-            titleText.style.opacity = 1;
+            titleText.style.opacity = 2;
             titleText.style.animation = "typing 3s steps(15, end) forwards";
             setTimeout(() => {
                 photoContainer.style.display = "flex";
@@ -209,28 +208,13 @@
             }, 3500);
         });
 
-        const photos = [
-            { src: "Papa.png", text: "Papa ❤️" },
-            { src: "Mummy.png", text: "Mummy ❤️" },
-            { src: "Puhaa.png", text: "Phuaa ❤️" },
-            { src: "Puphaa_.png", text: "Puphaa ❤️" },
-            { src: "Dadi.png", text: "Dadi ❤️" },
-            { src: "Suntia_didi.png", text: "Didi ❤️" },
-            { src: "Asha_di.png", text: "Didi ❤️" },
-            { src: "Bk_bhaiya.png", text: "Bhaiya ji ❤️" },
-            { src: "Anand_bhaiya.png", text: "Bhaiya ❤️" },
-            { src: "Sandhya_di.png", text: "Didi ❤️" },
-            { src: "Riya_.png", text: "Dr.Bang ❤️" },
-            { src: "Anshu_.png", text: "Chhotu ❤️" },
-            { src: "Amar.png", text: "Its Me😇" },
-
-        ];
-
         let index = 0;
 
         function showPhoto() {
-            photoText.textContent = photos[index].text;
-            familyPhoto.src = photos[index].src;
+            const cacheBuster = "?v=" + Date.now();
+            const current = photos[index];
+            photoText.textContent = current.text;
+            familyPhoto.src = current.src + cacheBuster;
             photoText.style.animation = "fadeZoom 1s ease forwards";
             familyPhoto.style.animation = "fadeZoom 1s ease forwards";
         }
@@ -238,9 +222,6 @@
         nextBtn.addEventListener("click", () => {
             index++;
             if (index < photos.length) {
-                photoText.style.animation = "none";
-                familyPhoto.style.animation = "none";
-                void familyPhoto.offsetWidth;
                 showPhoto();
             } else {
                 photoContainer.style.display = "none";
@@ -255,7 +236,7 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart");
-            heart.textContent = "❤️";
+            heart.textContent = "🌸";
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = 3 + Math.random() * 3 + "s";
             document.body.appendChild(heart);
@@ -263,6 +244,7 @@
         }
         setInterval(createHeart, 500);
     </script>
+
 </body>
 
 </html>
